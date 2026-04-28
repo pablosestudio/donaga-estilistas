@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donaga Estilistas — Peluquería Murcia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+:root{
+  --w:#ffffff;--off:#f9f9f7;--light:#f0eeea;
+  --acc:#b5432a;--acc2:#d4623f;--dark:#1c1c1a;--mid:#5a5a56;
+  --brd:rgba(28,28,26,.1);--nav:64px;--px:clamp(16px,5vw,60px);
+}
+
+body{background:var(--w);color:var(--dark);font-family:'Mulish',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:300;height:var(--nav);
+  background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--px);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-bname{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.08em;color:var(--dark)}
+.nav-btag{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);border:1px solid var(--acc);padding:2px 7px;border-radius:3px}
+
+.nav-links{display:flex;list-style:none}
+.nav-links a{display:block;padding:0 16px;height:var(--nav);line-height:var(--nav);font-size:.77rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover{color:var(--dark);border-bottom-color:var(--acc)}
+
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-tel{font-size:.8rem;font-weight:600;color:var(--dark);text-decoration:none;white-space:nowrap}
+.nav-tel:hover{color:var(--acc)}
+.nav-cta{background:var(--acc);color:#fff;padding:9px 18px;border-radius:4px;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s}
+.nav-cta:hover{background:var(--acc2)}
+
+.ham{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;cursor:pointer;background:none;border:none;padding:4px}
+.ham span{display:block;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.m-menu{position:fixed;inset:var(--nav) 0 0 0;background:var(--w);z-index:250;display:flex;flex-direction:column;padding:32px var(--px) 48px;transform:translateY(-110%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}
+.m-menu.open{transform:translateY(0)}
+.m-menu a{display:block;padding:18px 0;font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.06em;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--brd);transition:color .2s}
+.m-menu a:hover{color:var(--acc)}
+.m-menu .mm-cta{margin-top:28px;background:var(--acc);color:#fff;text-align:center;padding:16px;border-radius:6px;font-family:'Mulish',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-bottom:none}
+.m-menu .mm-tel{margin-top:10px;text-align:center;font-family:'Mulish',sans-serif;font-size:1rem;font-weight:600;color:var(--mid);border-bottom:none}
+
+/* ── HERO ── */
+.hero{margin-top:var(--nav);display:grid;grid-template-columns:55% 45%;min-height:calc(100vh - var(--nav))}
+.hero-text{padding:clamp(40px,6vw,80px) var(--px);display:flex;flex-direction:column;justify-content:center;background:var(--w)}
+
+.h-kick{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:20px;animation:up .4s .1s both}
+.h-kick::before{content:'';width:26px;height:2px;background:var(--acc)}
+
+.h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,8rem);line-height:.92;letter-spacing:.02em;color:var(--dark);margin-bottom:18px;animation:up .5s .2s both}
+.h1 .aw{color:var(--acc);display:block}
+
+.h-sub{font-family:'Libre Baskerville',serif;font-style:italic;font-size:clamp(.9rem,2vw,1.05rem);color:var(--mid);line-height:1.65;max-width:420px;margin-bottom:36px;animation:up .5s .35s both}
+
+.h-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;animation:up .5s .45s both}
+.chip{background:var(--light);border:1px solid var(--brd);padding:5px 13px;border-radius:100px;font-size:.72rem;font-weight:500;color:var(--dark)}
+.chip.star{background:#fff8e8;border-color:#e8c040;color:#8a6800}
+
+.h-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;animation:up .5s .55s both}
+.cta-main{background:var(--acc);color:#fff;padding:15px 30px;border-radius:4px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s;display:inline-block;white-space:nowrap}
+.cta-main:hover{background:var(--acc2);transform:translateY(-2px)}
+.cta-sec{font-size:.8rem;font-weight:600;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:6px;padding:15px 18px;border:1px solid var(--brd);border-radius:4px;transition:border-color .2s,color .2s;white-space:nowrap}
+.cta-sec:hover{border-color:var(--acc);color:var(--acc)}
+
+.hero-img{position:relative;overflow:hidden;background:var(--light)}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.h-badge{position:absolute;bottom:28px;left:-1px;background:var(--w);border-top:3px solid var(--acc);padding:18px 24px;box-shadow:4px 4px 20px rgba(0,0,0,.08)}
+.hb-rate{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--dark);line-height:1;letter-spacing:.05em}
+.hb-stars{color:#e8a020;font-size:.72rem;letter-spacing:3px;margin:2px 0}
+.hb-sub{font-size:.68rem;font-weight:500;color:var(--mid);letter-spacing:.06em;text-transform:uppercase}
+
+/* ── TICKER ── */
+.ticker{background:var(--acc);color:#fff;overflow:hidden;padding:13px 0;white-space:nowrap}
+.tick-inner{display:inline-flex;animation:tick 24s linear infinite}
+.tick-item{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.15em;padding:0 36px;border-right:1px solid rgba(255,255,255,.2);opacity:.8}
+.tick-item.hl{opacity:1;color:#ffd080}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SERVICES SCROLL ── */
+.srv-sec{padding:clamp(56px,8vw,100px) 0 clamp(56px,8vw,100px) var(--px);overflow:hidden}
+.srv-head{display:flex;justify-content:space-between;align-items:flex-end;padding-right:var(--px);margin-bottom:48px;flex-wrap:wrap;gap:16px}
+.eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.s-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,4.5rem);line-height:.95;letter-spacing:.02em;color:var(--dark)}
+.s-h em{font-family:'Libre Baskerville',serif;font-style:italic;font-size:.7em;letter-spacing:0;color:var(--acc)}
+
+.srv-scroll{display:flex;gap:18px;overflow-x:auto;padding-right:var(--px);padding-bottom:6px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.srv-scroll::-webkit-scrollbar{display:none}
+.srv-card{flex:0 0 clamp(220px,30vw,280px);scroll-snap-align:start;border:1px solid var(--brd);border-radius:8px;overflow:hidden;transition:box-shadow .3s,transform .3s;background:var(--w)}
+.srv-card:hover{box-shadow:0 12px 36px rgba(0,0,0,.1);transform:translateY(-4px)}
+.srv-img{height:180px;overflow:hidden;position:relative}
+.srv-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);transition:transform .4s,filter .4s}
+.srv-card:hover .srv-img img{transform:scale(1.06);filter:saturate(1)}
+.srv-tag{position:absolute;top:10px;right:10px;background:var(--acc);color:#fff;font-size:.67rem;font-weight:600;padding:3px 9px;border-radius:4px}
+.srv-body{padding:20px 20px 22px}
+.srv-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;color:var(--dark);margin-bottom:5px}
+.srv-desc{font-size:.76rem;color:var(--mid);line-height:1.6}
+
+/* ── TWO-UP ── */
+.two-up{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+.tu-img{position:relative;overflow:hidden;min-height:260px}
+.tu-img img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) brightness(.95)}
+.tu-lbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(28,28,26,.65) 0%,transparent 100%);padding:36px 28px 22px;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em}
+.tu-body{background:var(--light);padding:clamp(40px,5vw,80px) clamp(20px,4vw,56px);display:flex;flex-direction:column;justify-content:center}
+.tu-body p{font-size:.88rem;line-height:1.8;color:var(--mid);margin-bottom:16px}
+.tu-body p strong{color:var(--dark);font-weight:600}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.sg-item{background:var(--w);border-radius:7px;padding:18px;border-top:3px solid var(--acc)}
+.sg-n{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--acc);line-height:1;letter-spacing:.03em}
+.sg-l{font-size:.68rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--mid);margin-top:3px}
+
+/* ── BOOKING ── */
+.book-sec{padding:clamp(56px,8vw,100px) var(--px);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:center;background:var(--off)}
+.book-intro .s-h{font-size:clamp(2rem,4vw,4rem);margin-bottom:18px}
+.book-intro p{font-size:.88rem;line-height:1.75;color:var(--mid);margin-bottom:24px}
+.hours{margin-top:24px}
+.ht{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--brd);font-size:.82rem}
+.ht:last-child{border-bottom:none}
+.ht-day{color:var(--mid)}
+.ht-time{font-weight:600;color:var(--dark)}
+.ht-off{color:#ccc}
+
+.fbox{background:var(--w);border-radius:10px;padding:clamp(24px,3vw,40px);box-shadow:0 4px 28px rgba(0,0,0,.07);border:1px solid var(--brd)}
+.fbox-title{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.05em;margin-bottom:24px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--mid);margin-bottom:5px}
+.fg select,.fg input{width:100%;padding:12px 13px;background:var(--off);border:1.5px solid transparent;border-radius:6px;font-family:'Mulish',sans-serif;font-size:.87rem;color:var(--dark);outline:none;appearance:none;transition:border-color .2s,background .2s}
+.fg select:focus,.fg input:focus{border-color:var(--acc);background:var(--w)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.btn-sub{width:100%;background:var(--acc);color:#fff;border:none;padding:14px;border-radius:5px;font-family:'Mulish',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;margin-top:6px;transition:background .2s,transform .2s}
+.btn-sub:hover{background:var(--acc2);transform:translateY(-1px)}
+.fnote{text-align:center;margin-top:12px;font-size:.72rem;color:var(--mid)}
+.fnote a{color:var(--acc);text-decoration:none;font-weight:600}
+
+/* ── REVIEWS ── */
+.rev-sec{padding:clamp(56px,8vw,100px) var(--px)}
+.rev-top{display:grid;grid-template-columns:1fr auto;align-items:end;margin-bottom:48px;gap:16px}
+.g-pill{display:inline-flex;align-items:center;gap:12px;background:var(--off);border:1px solid var(--brd);padding:14px 20px;border-radius:8px}
+.gp-s{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--dark);line-height:1;letter-spacing:.05em}
+.gp-st{color:#e8a020;font-size:.67rem;letter-spacing:3px}
+.gp-cnt{font-size:.67rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--mid)}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.rev-card{border:1px solid var(--brd);border-radius:9px;padding:24px;transition:border-color .25s;background:var(--w)}
+.rev-card:hover{border-color:var(--acc)}
+.rv-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.rv-u{display:flex;align-items:center;gap:10px}
+.rv-av{width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.05em;display:flex;align-items:center;justify-content:center}
+.rv-name{font-size:.8rem;font-weight:600}
+.rv-date{font-size:.67rem;color:var(--mid);margin-top:1px}
+.rv-st{color:#e8a020;font-size:.67rem;letter-spacing:2px}
+.rv-t{font-size:.81rem;line-height:1.7;color:var(--mid);font-style:italic}
+
+/* ── CONTACT ── */
+.ct-sec{background:var(--dark);color:#fff;display:grid;grid-template-columns:1.2fr 0.8fr;min-height:440px}
+.ct-vis{position:relative;overflow:hidden;min-height:260px}
+.ct-vis img{width:100%;height:100%;object-fit:cover;opacity:.35;filter:grayscale(20%)}
+.ct-vt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,4vw,56px)}
+.ct-vt h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:.95;letter-spacing:.03em;color:#fff;margin-bottom:12px}
+.ct-vt h2 span{color:var(--acc2)}
+.ct-vt p{font-size:1rem;color:rgba(255,255,255,.6);font-family:'Libre Baskerville',serif;font-style:italic}
+.ct-det{padding:clamp(40px,4vw,60px) clamp(20px,4vw,56px);display:flex;flex-direction:column;justify-content:center;gap:28px}
+.cd-lbl{font-size:.63rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acc2);margin-bottom:5px}
+.cd-val{font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.55}
+.cd-val a{color:rgba(255,255,255,.9);text-decoration:none;transition:color .2s}
+.cd-val a:hover{color:var(--acc2)}
+.ct-cta{background:var(--acc);color:#fff;padding:13px 24px;border-radius:4px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;width:fit-content;transition:background .2s}
+.ct-cta:hover{background:var(--acc2)}
+
+/* ── FOOTER ── */
+footer{background:#111110;display:flex;justify-content:space-between;align-items:center;padding:22px var(--px);flex-wrap:wrap;gap:12px}
+.fl{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.08em;color:#fff}
+.fl span{color:var(--acc2)}
+.fc{font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:.06em}
+
+/* ── ANIMATION ── */
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ════════════════════
+   TABLET  ≤ 860px
+════════════════════ */
+@media(max-width:860px){
+  .nav-links,.nav-tel{display:none}
+  .nav-cta{display:none}
+  .ham{display:flex}
+
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-text{padding:clamp(28px,5vw,48px) var(--px)}
+  .hero-img{height:52vw;min-height:200px;max-height:340px}
+
+  .two-up{grid-template-columns:1fr}
+  .tu-img{height:52vw;min-height:200px;max-height:320px}
+
+  .book-sec{grid-template-columns:1fr}
+
+  .rev-top{grid-template-columns:1fr;align-items:flex-start}
+
+  .ct-sec{grid-template-columns:1fr}
+  .ct-vis{height:52vw;min-height:200px;max-height:300px}
+
+  footer{flex-direction:column;align-items:flex-start}
+}
+
+/* ════════════════════
+   MOBILE  ≤ 480px
+════════════════════ */
+@media(max-width:480px){
+  .h-chips{gap:6px}
+  .h-cta{flex-direction:column}
+  .h-cta a{text-align:center}
+  .h-badge{display:none} /* badge is in hero-img already */
+
+  .fg-row{grid-template-columns:1fr}
+
+  .stat-grid{grid-template-columns:1fr 1fr}
+
+  footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-bname">Donaga</div>
+    <div class="nav-btag">Estilistas</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#reserva">Reserva</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:622336994" class="nav-tel">622 33 69 94</a>
+    <a href="#reserva" class="nav-cta">Pedir cita</a>
+    <button class="ham" id="ham" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="m-menu" id="mMenu">
+  <a href="#servicios">Servicios</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#reserva">Reservar</a>
+  <a href="#contacto">Contacto</a>
+  <a href="#reserva" class="mm-cta">Pedir cita ahora →</a>
+  <a href="tel:622336994" class="mm-tel">📞 622 33 69 94</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="h-kick">Peluquería · Murcia · C/ Belando 15</div>
+    <h1 class="h1">Corte.<br>Color.<br><span class="aw">Confianza.</span></h1>
+    <p class="h-sub">Tu peluquería de referencia en Murcia. Estilistas que escuchan, crean y cuidan cada detalle de tu imagen.</p>
+    <div class="h-chips">
+      <span class="chip star">★★★★★ 4,7 Google</span>
+      <span class="chip">149 reseñas</span>
+      <span class="chip">✂️ Corte</span>
+      <span class="chip">🎨 Color</span>
+      <span class="chip">💆 Tratamientos</span>
+    </div>
+    <div class="h-cta">
+      <a href="#reserva" class="cta-main">Reservar cita →</a>
+      <a href="tel:622336994" class="cta-sec">📞 622 33 69 94</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=80&auto=format&fit=crop" alt="Peluquería profesional Murcia" loading="eager">
+    <div class="h-badge">
+      <div class="hb-rate">4,7★</div>
+      <div class="hb-stars">★★★★★</div>
+      <div class="hb-sub">149 reseñas Google</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="tick-inner">
+    <span class="tick-item hl">★ 4,7 en Google</span><span class="tick-item">Corte & Peinado</span><span class="tick-item hl">149 Reseñas</span><span class="tick-item">Coloración</span><span class="tick-item hl">C/ Belando 15 · Murcia</span><span class="tick-item">Balayage</span><span class="tick-item hl">622 33 69 94</span><span class="tick-item">Peinado Novia</span><span class="tick-item hl">Lun–Sáb 9:30</span><span class="tick-item">Tratamientos</span>
+    <span class="tick-item hl">★ 4,7 en Google</span><span class="tick-item">Corte & Peinado</span><span class="tick-item hl">149 Reseñas</span><span class="tick-item">Coloración</span><span class="tick-item hl">C/ Belando 15 · Murcia</span><span class="tick-item">Balayage</span><span class="tick-item hl">622 33 69 94</span><span class="tick-item">Peinado Novia</span><span class="tick-item hl">Lun–Sáb 9:30</span><span class="tick-item">Tratamientos</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<div class="srv-sec" id="servicios">
+  <div class="srv-head">
+    <div>
+      <div class="eyebrow">Nuestros servicios</div>
+      <h2 class="s-h">Lo que hacemos <em>mejor</em></h2>
+    </div>
+    <a href="#reserva" class="cta-main">Reservar →</a>
+  </div>
+  <div class="srv-scroll">
+    <div class="srv-card"><div class="srv-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop" alt="Coloración" loading="lazy"><div class="srv-tag">Desde 35€</div></div><div class="srv-body"><div class="srv-name">Coloración</div><p class="srv-desc">Tintes, mechas y balayage con técnicas avanzadas.</p></div></div>
+    <div class="srv-card"><div class="srv-img"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&auto=format&fit=crop" alt="Corte" loading="lazy"><div class="srv-tag">Desde 18€</div></div><div class="srv-body"><div class="srv-name">Corte & Peinado</div><p class="srv-desc">Cortes personalizados al rostro y estilo.</p></div></div>
+    <div class="srv-card"><div class="srv-img"><img src="https://images.unsplash.com/photo-1487412947147-5cebf96e04b8?w=600&q=80&auto=format&fit=crop" alt="Novia" loading="lazy"><div class="srv-tag">Desde 80€</div></div><div class="srv-body"><div class="srv-name">Peinado Novia</div><p class="srv-desc">Tu día más especial con el peinado perfecto.</p></div></div>
+    <div class="srv-card"><div class="srv-img"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&q=80&auto=format&fit=crop" alt="Tratamiento" loading="lazy"><div class="srv-tag">Desde 40€</div></div><div class="srv-body"><div class="srv-name">Tratamientos</div><p class="srv-desc">Queratina, hidratación y nutrición capilar.</p></div></div>
+    <div class="srv-card"><div class="srv-img"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80&auto=format&fit=crop" alt="Barbería" loading="lazy"><div class="srv-tag">Desde 15€</div></div><div class="srv-body"><div class="srv-name">Barbería</div><p class="srv-desc">Corte y arreglo de barba con técnica clásica.</p></div></div>
+    <div class="srv-card"><div class="srv-img"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&auto=format&fit=crop" alt="Alisado" loading="lazy"><div class="srv-tag">Desde 55€</div></div><div class="srv-body"><div class="srv-name">Alisado & Permanente</div><p class="srv-desc">Transformaciones duraderas y cuidadas.</p></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="two-up" id="nosotros">
+  <div class="tu-img">
+    <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=900&q=80&auto=format&fit=crop" alt="Salón Donaga" loading="lazy">
+    <div class="tu-lbl">Donaga Estilistas · Murcia</div>
+  </div>
+  <div class="tu-body">
+    <div class="eyebrow">Quiénes somos</div>
+    <h2 class="s-h" style="font-size:clamp(2rem,3.5vw,3.2rem);margin-bottom:20px">Pasión por el <em>detalle</em></h2>
+    <p>En <strong>Donaga Estilistas</strong> llevamos años siendo la peluquería de referencia en Murcia. Técnica, creatividad y atención personalizada en cada visita.</p>
+    <p>En <strong>C/ Belando 15</strong> te recibimos en un espacio cómodo y profesional donde tú eres el protagonista.</p>
+    <div class="stat-grid">
+      <div class="sg-item"><div class="sg-n">4,7★</div><div class="sg-l">Google Rating</div></div>
+      <div class="sg-item"><div class="sg-n">149</div><div class="sg-l">Reseñas reales</div></div>
+      <div class="sg-item"><div class="sg-n">6</div><div class="sg-l">Servicios</div></div>
+      <div class="sg-item"><div class="sg-n">100%</div><div class="sg-l">Satisfacción</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<div class="book-sec" id="reserva">
+  <div class="book-intro">
+    <div class="eyebrow">Reserva online</div>
+    <h2 class="s-h">Pide tu cita <em>hoy</em></h2>
+    <p>Sin llamadas ni esperas. Rellena el formulario y te confirmamos en menos de 24h.</p>
+    <div class="hours">
+      <div class="ht"><span class="ht-day">Lunes – Viernes</span><span class="ht-time">9:30 – 20:00</span></div>
+      <div class="ht"><span class="ht-day">Sábado</span><span class="ht-time">9:30 – 14:00</span></div>
+      <div class="ht"><span class="ht-day">Domingo</span><span class="ht-off ht-time">Cerrado</span></div>
+    </div>
+  </div>
+  <div class="fbox">
+    <div class="fbox-title">Solicitar cita →</div>
+    <div class="fg"><label>Servicio</label><select><option>— Elige un servicio —</option><option>Corte & Peinado</option><option>Coloración / Tinte</option><option>Mechas / Balayage</option><option>Tratamiento Capilar</option><option>Permanente / Alisado</option><option>Peinado de Novia</option><option>Barbería</option></select></div>
+    <div class="fg-row">
+      <div class="fg"><label>Fecha</label><input type="date"></div>
+      <div class="fg"><label>Hora</label><select><option>9:30</option><option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option><option>12:00</option><option>16:00</option><option>16:30</option><option>17:00</option><option>18:00</option><option>18:30</option></select></div>
+    </div>
+    <div class="fg-row">
+      <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+      <div class="fg"><label>Teléfono</label><input type="tel" placeholder="6XX XXX XXX"></div>
+    </div>
+    <button class="btn-sub" onclick="alert('¡Solicitud enviada! Te llamaremos para confirmar. ✂️')">Solicitar cita →</button>
+    <p class="fnote">O llama: <a href="tel:622336994">622 33 69 94</a></p>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="rev-sec" id="resenas">
+  <div class="rev-top">
+    <div>
+      <div class="eyebrow">Reseñas de clientes</div>
+      <h2 class="s-h">4,7 sobre 5.<br><em>149 personas</em> no mienten.</h2>
+    </div>
+    <div class="g-pill"><div><div class="gp-s">4,7</div><div class="gp-st">★★★★★</div><div class="gp-cnt">149 reseñas · Google</div></div></div>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card"><div class="rv-h"><div class="rv-u"><div class="rv-av">M</div><div><div class="rv-name">María G.</div><div class="rv-date">hace 2 semanas</div></div></div><div class="rv-st">★★★★★</div></div><p class="rv-t">"Llevo años yendo aquí y siempre salgo encantada. Muy profesionales. El mejor salón de Murcia sin dudarlo."</p></div>
+    <div class="rev-card"><div class="rv-h"><div class="rv-u"><div class="rv-av">A</div><div><div class="rv-name">Ana R.</div><div class="rv-date">hace 1 mes</div></div></div><div class="rv-st">★★★★★</div></div><p class="rv-t">"El balayage fue una transformación increíble. Trato excepcional y precios muy razonables. 100% recomendable."</p></div>
+    <div class="rev-card"><div class="rv-h"><div class="rv-u"><div class="rv-av">L</div><div><div class="rv-name">Laura M.</div><div class="rv-date">hace 3 meses</div></div></div><div class="rv-st">★★★★★</div></div><p class="rv-t">"Hicieron mi peinado de novia y fue perfecto. Escuchan lo que quieres y lo ejecutan a la perfección."</p></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="ct-sec" id="contacto">
+  <div class="ct-vis">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80&auto=format&fit=crop" alt="Donaga Estilistas" loading="lazy">
+    <div class="ct-vt">
+      <h2>Ven a<br><span>vernos</span></h2>
+      <p>C/ Belando 15 · Murcia</p>
+    </div>
+  </div>
+  <div class="ct-det">
+    <div><div class="cd-lbl">Dirección</div><div class="cd-val">C/ Belando 15, Murcia</div></div>
+    <div><div class="cd-lbl">Teléfono</div><div class="cd-val"><a href="tel:622336994">622 33 69 94</a></div></div>
+    <div><div class="cd-lbl">Horario</div><div class="cd-val">Lun–Vie: 9:30 – 20:00<br>Sábado: 9:30 – 14:00</div></div>
+    <a href="#reserva" class="ct-cta">Reservar cita →</a>
+    <a href="https://maps.google.com/?q=Donaga+Estilistas+Murcia" target="_blank" style="font-size:.78rem;color:rgba(255,255,255,.4);text-decoration:none">Ver en Google Maps →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">Donaga <span>Estilistas</span></div>
+  <div class="fc">© 2025 · C/ Belando 15, Murcia · 622 33 69 94</div>
+</footer>
+
+<script>
+const ham=document.getElementById('ham'),menu=document.getElementById('mMenu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');menu.classList.toggle('open');
+  document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
+});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  ham.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';
+}));
+</script>
+</body>
+</html>
